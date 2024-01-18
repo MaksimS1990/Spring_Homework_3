@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
 @Service
 public class RegistrationService {
 
@@ -20,7 +22,7 @@ public class RegistrationService {
     @Autowired
     private NotificationService notificationService;
 
-    public String processRegistration(UserService userService, DataProcessingService dataProcessingService) {
+    public String processRegistration() {
         return null;
     }
 
