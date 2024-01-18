@@ -39,7 +39,7 @@ public class TaskController {
     }
 
     @GetMapping("/calc")
-    public double calculateAverageAge(List<User> users, double i) {
+    public double calculateAverageAge(List<User> users) {
         return service.calculateAverageAge(users);
     }
 
