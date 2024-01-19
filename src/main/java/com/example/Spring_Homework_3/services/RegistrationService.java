@@ -23,13 +23,14 @@ public class RegistrationService {
 
     public void processRegistration(String name, int age, String email){
         User user = userService.createUser(name, age, email);
-        notificationService.notifyUser(user); // Перенёс из UserService
+        notificationService.notifyUser(user);
         dataProcessingService.addUserToList(user);
     }
 
-    public String processRegistration() {
-        return null;
-    }
+    // public void processRegistration(User user){
+    //     notificationService.notifyUser(user); // Перенёс из UserService
+    //     dataProcessingService.addUserToList(user);
+    // }
 
     //Поля UserService, NotificationService
 
