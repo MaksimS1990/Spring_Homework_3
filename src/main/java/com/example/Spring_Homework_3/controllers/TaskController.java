@@ -3,47 +3,47 @@ package com.example.Spring_Homework_3.controllers;
 import com.example.Spring_Homework_3.domain.User;
 import com.example.Spring_Homework_3.services.DataProcessingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tasks")
+@RequestMapping("/tasks") // localhost:8080/tasks
 public class TaskController {
 
     @Autowired
-    private DataProcessingService service;
+    private DataProcessingService dataProcessingService;
 
     @GetMapping
-    public List<String> getAllTasks()
-    {
+    public List<String> getAllTasks(){
         List<String> tasks = new ArrayList<>();
         tasks.add("sort");
         tasks.add("filter");
         tasks.add("calc");
-        return  tasks;
+        return tasks;
     }
 
-    @GetMapping("/sort")//localhost:8080/tasks/sort
-    public List<User> sortUsersByAge()
-    {
-        return service.sortUsersByAge(service.getRepository().getUsers());
+    @GetMapping("/sort")
+    public List<User> sortUsersByAge(){
+        return dataProcessingService.sortUserByAge(dataProcessingService.getUserRepository().getUsers());
     }
 
+    /**
+     * Метод возвращает отфильтрованный список юзеров по возрасту (старше заданного значения)
+     */
     @GetMapping("/filter/{age}")
-    public List<User> filterUsersByAge(@PathVariable("age") int age) {
-        return service.filterUsersByAge(service.getRepository().getUsers(), age);
+    public List<User> filterUsersByAge(@PathVariable int age) {
+        return dataProcessingService.filterUserByAge(dataProcessingService.getUserRepository().getUsers(), age);
     }
 
+    /**
+     * Метод возвращает среднее арифметическое возратов юзеров
+     */
     @GetMapping("/calc")
     public double calculateAverageAge() {
-        return service.calculateAverageAge(service.getRepository().getUsers());
+        return dataProcessingService.calculateAge(dataProcessingService.getUserRepository().getUsers());
     }
-
 
     //метод filterUsersByAge
     //Подсказка  @GetMapping("/filter/{age}")

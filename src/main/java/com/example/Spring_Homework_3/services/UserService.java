@@ -8,23 +8,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    // @Autowired
+    @Autowired
     private NotificationService notificationService;
-
-    // Внедрение зависимости через конструктор
-    public UserService(NotificationService notificationService) {
-        this.notificationService = notificationService;
-    }
 
     public User createUser(String name, int age, String email) {
         User user = new User();
-        user.setName(name);
         user.setAge(age);
+        user.setName(name);
         user.setEmail(email);
-
-        // Отправляем уведомление о создании нового пользователя
-        notificationService.notifyUser(user);
-
+        notificationService.notifyUser(user); // сообщение о создании пользователя
         return user;
     }
 }
