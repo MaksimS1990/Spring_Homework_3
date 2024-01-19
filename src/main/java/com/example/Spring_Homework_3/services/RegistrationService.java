@@ -3,7 +3,6 @@ package com.example.Spring_Homework_3.services;
 import com.example.Spring_Homework_3.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -21,6 +20,12 @@ public class RegistrationService {
     private UserService userService;
     @Autowired
     private NotificationService notificationService;
+
+    public void processRegistration(String name, int age, String email){
+        User user = userService.createUser(name, age, email);
+        notificationService.notifyUser(user); // Перенёс из UserService
+        dataProcessingService.addUserToList(user);
+    }
 
     public String processRegistration() {
         return null;
